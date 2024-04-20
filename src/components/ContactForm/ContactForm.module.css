@@ -1,0 +1,47 @@
+.formAddContainer {
+  width: 400px;
+  border: 2px solid gray;
+  border-radius: 4px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.formAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.formAddBtn {
+  width: 90px;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+.radioBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border: 2px solid gray;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: rgba(218, 213, 213, 0.866);
+}
+.formRadio {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-right: 20px;
+}
