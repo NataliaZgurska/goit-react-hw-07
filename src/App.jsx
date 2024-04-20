@@ -1,16 +1,29 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { Layout } from './components/Layout/Layout';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
 
-function App() {
+import { fetchTasks } from './redux/contactsOps';
+import { selectError, selectIsLoading } from '../redux/selectors';
+
+export const App = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
   return (
-    <div>
+    <Layout>
       <h2>Phonebook</h2>
       <ContactForm />
+      {isLoading && !error && <b>Request in progress...</b>}
       <SearchBox />
       <ContactList />
-    </div>
+    </Layout>
   );
-}
-
-export default App;
+};
