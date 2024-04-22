@@ -55,38 +55,7 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected);
-
-    // .addCase(toggleCompleted.pending, handlePending)
-    // .addCase(toggleCompleted.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   const index = state.items.findIndex(
-    //     task => task.id === action.payload.id
-    //   );
-    //   state.items.splice(index, 1, action.payload);
-    // })
-    // .addCase(toggleCompleted.rejected, handleRejected);
   },
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-// const contactsSlice = createSlice({
-//   name: 'contacts',
-//   initialState: INITIAL_STATE.contacts,
-
-//   reducers: {
-//     addContact(state, action) {
-//       state.items.push(action.payload);
-//       //   state.contacts = [...state.contacts, action.payload]
-//     },
-//     deleteContact(state, action) {
-//       state.items = state.items.filter(
-//         contact => contact.id !== action.payload
-//       );
-//     },
-//   },
-// });
-// export const selectContacts = state => state.contacts.items;
-// export const { addContact, deleteContact } = contactsSlice.actions;
-// export const contactsReducer = contactsSlice.reducer;

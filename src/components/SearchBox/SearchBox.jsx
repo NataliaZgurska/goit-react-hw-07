@@ -19,6 +19,7 @@ const SearchBox = () => {
         placeholder="Search..."
         value={filter}
         onChange={onChangeFilter}
+        className={css.searchBoxInput}
       />
     </div>
   );

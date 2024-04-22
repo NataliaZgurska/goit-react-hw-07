@@ -1,4 +1,5 @@
 import { FaPhone } from 'react-icons/fa6';
+import { MdDeleteForever } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 
 import { deleteContact } from '../../redux/contactsOps';
@@ -20,7 +21,9 @@ const Contact = ({ contact }) => {
           {number}
         </p>
       </div>
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={handleDelete} className={css.deleteBtn}>
+        <MdDeleteForever size={36} color="blue" />
+      </button>
     </>
   );
 };

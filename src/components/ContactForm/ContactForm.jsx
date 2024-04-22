@@ -43,28 +43,41 @@ const ContactForm = () => {
         onSubmit={handleSubmit}
       >
         <Form className={css.formAdd}>
-          <label className={css.formLabel}>
-            <span>Name:</span>
-            <Field type="text" name="name" autoComplete="off" />
-            <ErrorMessage
-              className={css.errorMessage}
-              component="p"
-              name="name"
-            />
-          </label>
+          <div className={css.NameNumberContainer}>
+            <label className={css.formLabel}>
+              {/* <span>Name:</span> */}
+              <Field
+                type="text"
+                name="name"
+                autoComplete="off"
+                placeholder="name"
+                className={css.formInput}
+              />
+              <ErrorMessage
+                className={css.errorMessage}
+                component="p"
+                name="name"
+              />
+            </label>
 
-          <label className={css.formLabel}>
-            <span>Number:</span>
-            <Field type="number" name="number" autoComplete="off" />
-            <ErrorMessage
-              className={css.errorMessage}
-              component="p"
-              name="number"
-            />
-          </label>
-
+            <label className={css.formLabel}>
+              {/* <span>Number:</span> */}
+              <Field
+                type="number"
+                name="number"
+                autoComplete="off"
+                placeholder="number"
+                className={css.formInput}
+              />
+              <ErrorMessage
+                className={css.errorMessage}
+                component="p"
+                name="number"
+              />
+            </label>
+          </div>
           <button type="submit" className={css.formAddBtn}>
-            Submit
+            Add contact
           </button>
         </Form>
       </Formik>
