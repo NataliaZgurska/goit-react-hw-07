@@ -1,27 +1,14 @@
 import { useSelector } from 'react-redux';
 
-// import { selectVisibleTasks } from '../../redux/selectors';
 import { selectFilteredContacts } from '../../redux/selectors';
 import Contact from '../Contact/Contact';
 import css from './ContactList.module.css';
 
 const ContactList = () => {
-  // const contacts = useSelector(selectFilteredContacts);
   const filteredContacts = useSelector(selectFilteredContacts);
-  // console.log(contacts);
-  // return (
-  //   <ul className={css.list}>
-  //     {tasks.map(task => (
-  //       <li className={css.listItem} key={task.id}>
-  //         <Task task={task} />
-  //       </li>
-  //     ))}
-  //   </ul>
-  // );
 
   return (
     <div>
-      ContactList
       <ul className={css.contactList}>
         {filteredContacts.map(contact => {
           return (

@@ -1,80 +1,75 @@
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+
+// import { addContact } from '../../redux/contactsSlice';
 import { addContact } from '../../redux/contactsOps';
 
 import css from './ContactForm.module.css';
 
+const FORM_INITIAL_VALUES = {
+  name: '',
+  number: '',
+};
+
+const FormSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  number: Yup.string()
+    .min(3, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+});
+
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    const form = evt.target;
-    const { name, number } = form.elements;
-    console.log(name, name.value);
-    console.log(number, number.value);
-
-    dispatch(addContact(formData));
-    form.reset();
+  const handleSubmit = (values, actions) => {
+    dispatch(
+      addContact({
+        ...values,
+      })
+    );
+    actions.resetForm();
   };
 
   return (
-    // <form className={css.formAdd} onSubmit={handleSubmit}>
-    //   <label className={css.formLabel}>
-    //     <span>Name:</span>
-    //     <input
-    //       type="text"
-    //       name="name"
-    //       // autoComplete="off"
-    //       required
-    //       placeholder="name"
-    //     />
-    //   </label>
+    <div className={css.formAddContainer}>
+      <Formik
+        initialValues={FORM_INITIAL_VALUES}
+        validationSchema={FormSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form className={css.formAdd}>
+          <label className={css.formLabel}>
+            <span>Name:</span>
+            <Field type="text" name="name" autoComplete="off" />
+            <ErrorMessage
+              className={css.errorMessage}
+              component="p"
+              name="name"
+            />
+          </label>
 
-    //   <label className={css.formLabel}>
-    //     <span>Number:</span>
-    //     <input type="number" name="number" required />
-    //   </label>
+          <label className={css.formLabel}>
+            <span>Number:</span>
+            <Field type="number" name="number" autoComplete="off" />
+            <ErrorMessage
+              className={css.errorMessage}
+              component="p"
+              name="number"
+            />
+          </label>
 
-    //   <button type="submit">Add Contact</button>
-    // </form>
-
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="name" />
-      <input type="number" name="number" />
-      <button type="submit">Add Contact</button>
-    </form>
+          <button type="submit" className={css.formAddBtn}>
+            Submit
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
+
 export default ContactForm;
-
-//         <Form className={css.formAdd}>
-//           <label className={css.formLabel}>
-//             <span>Name:</span>
-//             <Field type="text" name="name" autoComplete="off" />
-//             <ErrorMessage
-//               className={css.errorMessage}
-//               component="p"
-//               name="name"
-//             />
-//           </label>
-
-//           <label className={css.formLabel}>
-//             <span>Number:</span>
-//             <Field type="number" name="number" autoComplete="off" />
-//             <ErrorMessage
-//               className={css.errorMessage}
-//               component="p"
-//               name="number"
-//             />
-//           </label>
-
-//           <button type="submit" className={css.formAddBtn}>
-//             Submit
-//           </button>
-//         </Form>
-//       </Formik>
-//     </div>
-//   );
-// };
-
-// export default ContactForm;
