@@ -1,46 +1,51 @@
 import { useDispatch } from 'react-redux';
-
-import css from './ContactForm.module.css';
 import { addContact } from '../../redux/contactsOps';
 
-export const ContactForm = () => {
+import css from './ContactForm.module.css';
+
+const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.target;
-    console.log(form);
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const form = evt.target;
+    const { name, number } = form.elements;
+    console.log(name, name.value);
+    console.log(number, number.value);
 
-    const newContact = {
-      name: event.target.elements.name.value,
-      number: event.target.elements.number.value,
-    };
-    dispatch(addContact(newContact));
+    dispatch(addContact(formData));
     form.reset();
   };
 
   return (
-    <form className={css.formAdd} onSubmit={handleSubmit}>
-      <label className={css.formLabel}>
-        <span>Name:</span>
-        <input
-          type="text"
-          name="name"
-          autoComplete="off"
-          required
-          placeholder="name"
-        />
-      </label>
+    // <form className={css.formAdd} onSubmit={handleSubmit}>
+    //   <label className={css.formLabel}>
+    //     <span>Name:</span>
+    //     <input
+    //       type="text"
+    //       name="name"
+    //       // autoComplete="off"
+    //       required
+    //       placeholder="name"
+    //     />
+    //   </label>
 
-      <label className={css.formLabel}>
-        <span>Number:</span>
-        <input type="number" name="number" autoComplete="off" required />
-      </label>
+    //   <label className={css.formLabel}>
+    //     <span>Number:</span>
+    //     <input type="number" name="number" required />
+    //   </label>
 
-      <Button type="submit">Add task</Button>
+    //   <button type="submit">Add Contact</button>
+    // </form>
+
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="name" />
+      <input type="number" name="number" />
+      <button type="submit">Add Contact</button>
     </form>
   );
 };
+export default ContactForm;
 
 //         <Form className={css.formAdd}>
 //           <label className={css.formLabel}>

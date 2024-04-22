@@ -5,8 +5,10 @@ import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
 
-import { fetchTasks } from './redux/contactsOps';
-import { selectError, selectIsLoading } from '../redux/selectors';
+import { selectError, selectIsLoading } from './redux/selectors';
+import { fetchContacts } from './redux/contactsOps';
+
+// import { selectError, selectIsLoading } from '../redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ export const App = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchTasks());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (

@@ -13,11 +13,11 @@ export const INITIAL_STATE = {
 };
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.loading = true;
 };
 
 const handleRejected = (state, action) => {
-  state.isLoading = false;
+  state.loading = false;
   state.error = action.payload;
 };
 
@@ -29,7 +29,7 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.pending, handlePending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = null;
         state.items = action.payload;
       })
@@ -38,7 +38,7 @@ const contactsSlice = createSlice({
       //addContact
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = null;
         state.items.push(action.payload);
       })
@@ -47,7 +47,7 @@ const contactsSlice = createSlice({
       // deleteContact
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = null;
         const index = state.items.findIndex(
           item => item.id === action.payload.id
